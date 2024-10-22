@@ -8,16 +8,20 @@
  */
 
 int main(){
-	char str1[];
+	char str1[20];
 	int posicion;
 	char caracter;
 
 	printf("Introduce una palabra\n");
-	scanf("%s\n", str[]);
+	scanf(" %s", str1);
 	printf("Elige una posicion\n");
-	scand("%d\n", posicion);
+	scanf(" %d", &posicion);
 	printf("Elige un caracter\n");
-	scanf("%c\n", caracter);
+	scanf(" %c", &caracter);
 	
-	str1[]
+	str1[posicion-1] = caracter;
+
+	printf("Tu nueva palabra es:%s\n", str1);
+
+	return 0;
 }

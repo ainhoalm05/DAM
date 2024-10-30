@@ -4,6 +4,7 @@
  *	Author: Ainhoa Leonor
  *
  */
+
 int main() {
 	int n = 5;
 

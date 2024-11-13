@@ -8,10 +8,10 @@
  *
  */
 
-int incrementar(*n1,*n2){
-int num1=n1; 
-
- *n2=n1;
+void incrementar(int *n1,int *n2){ 
+	int temp=*n1; //Esto es una variable temporal para guardar el valor de n1.
+	*n1=*n2;//Le pasamos el valor el valor de n1 a n2.
+	*n2=temp;//n2 pasa a tener el valor de n1 que guardamos en la variable temporal.
 
 }
 

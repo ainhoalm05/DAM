@@ -14,8 +14,6 @@ int es_mayuscula(char letra){
 		return 1;
 	}else if (letra>=90 && letra<=122){
 		return 0;
-	}else{
-		printf("No has introducido lo que se pide");
 	}
 }
 
@@ -94,7 +92,13 @@ int main (){
 			printf("Introduce un caracter: \n");
 			scanf(" %c", &letra_main);
 
-			(es_mayuscula(letra_main)) ? : printf("El caracter %c no es mayusculas", letra_main) ; printf("El caracter %c es mayuscula", letra_main);
+			if (es_mayuscula(letra_main)==1){
+				printf("Es mayuscula\n");
+			} else if (es_mayuscula(letra_main)==0){
+				printf("Es minusulas\n");
+			}else{
+			printf("ERES BOBO\n");
+			}
 			break;
 
 		case 2:

@@ -14,7 +14,7 @@ typedef struct {
 	int edad;
 	float nota;
 
-}Estudiante;
+}estudiante;
 /*
    Estudiante * inicializar(char *nombre, int edad, float nota){
    Estudiante * estudiante_nuevo = malloc();//Reserva ed memoria dinamica
@@ -22,17 +22,20 @@ typedef struct {
    return &estudiante_nuevo;
    }
    */
-void inicializar(Estudiante * estudiante_a_rellenar, char * nombre, int edad, float nota){
+void inicializar(estudiante * estudiante_a_rellenar, char * nombre, int edad, float nota){
 	//El operador -> se utiliza para acceder al contenido de un puntero que este caso es estudiante_a_rellenar
 	estudiante_a_rellenar->edad=edad;
 	estudiante_a_rellenar->nota=nota;
-	strcpy(estudiante_a_rellenar.nombre,nombre);
+	strcpy(estudiante_a_rellenar->nombre,nombre);
 	//estudiante_a_rellenar.nombre=nombre no funciona porque se estan intentando comparar
 	//dos direcciones de memoria porque es una variable de tipo puntero
 
 }
+void cumpleanios(estudiante * cumpleanero){
+	cumpleanero->edad++;
+}
 int main (){
-	Estudiante listado[MAX_ESTUDIANTES];//Aqui se reserva la memoria para los estudiantes
+	estudiante listado[MAX_ESTUDIANTES];//Aqui se reserva la memoria para los estudiantes
 
 	int num_estudiantes;
 
@@ -43,7 +46,7 @@ int main (){
 
 	printf("%p\n", listado);
 	printf("Sizeof listado: %lu\n",sizeof(listado));
-	printf("Sizeof estudiante: %lu\n",sizeof(Estudiante));
+	printf("Sizeof estudiante: %lu\n",sizeof(estudiante));
 
 	for(int i=0;i < num_estudiantes; i++){
 		printf("¿Cuantos estudiantes desea inicializar?");
@@ -57,6 +60,11 @@ int main (){
 
 		inicializar(listado+i,nombre,edad,nota);//=inicializar(&listado[i],nombre,edad,nota)
 	}
+//El estudiante de la primera posicion ha cumplido años
+printf("Edad antigua de %s: %d\n",listado[0].nombre,listado[0].edad);
+cumpleanios(&listado[0]);
+printf("Edad nueva: %d\n",listado[0].edad);
+
 	return 0;
 }
 

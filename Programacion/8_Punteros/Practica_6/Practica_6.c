@@ -27,18 +27,34 @@ typedef struct{
 	int cantidadDispo;
 }Biblioteca;
 
-void mostrarLibros(Biblioteca * catalogo){
-for (int i = 0; i < MAX_AUTORES; ++i){
- printf("ID: %d\n\
-    Titulo del libro: %s\n\
-    Autor del libro: %s\n\
-    ");   
- //(catalogo+1)->id,...
+void mostrarLibros(Biblioteca *catalogo) {
+    for (int i = 0; i < MAX_LIBROS; ++i) {
+        printf("ID: %d\n", catalogo[i].id);
+        printf("Título del libro: %s\n", catalogo[i].titulo_libro);
+        printf("Autor del libro: %s\n", catalogo[i].autor_libro);
+        printf("Categoría del libro: %d\n", catalogo[i].categoria);
+        printf("Precio del libro: %.2f\n", catalogo[i].precio_libro);
+        printf("Disponibilidad del libro: %d\n", catalogo[i].cantidadDispo);
+    }
+}
+
+void busacarId(Biblioteca * catalogo, int id){
+    for(int i=0;i<MAX_LIBROS;i++){
+        if (catalogo[i].id == id){
+        printf("ID: %d\n", catalogo[i].id);
+        printf("Título del libro: %s\n", catalogo[i].titulo_libro);
+        printf("Autor del libro: %s\n", catalogo[i].autor_libro);
+        printf("Categoría del libro: %d\n", catalogo[i].categoria);
+        printf("Precio del libro: %.2f\n", catalogo[i].precio_libro);
+        printf("Disponibilidad del libro: %d\n", catalogo[i].cantidadDispo);
+        break;
+        }else{
+        printf("ERROR");
+        break;
+    }
+    }
 
 }
-}
-
-
 
 
 int main(){
@@ -97,10 +113,13 @@ Biblioteca libros[MAX_LIBROS] = {
 
 switch (eleccion){
 	case 1:
-        mostrarLibros();
+        mostrarLibros(libros);
 	break;
     case 2:
-
+        int id_buscar;
+        printf("Intduce el ID del libro: \n");
+        scanf("%d",&id_buscar);
+        busacarId(libros,id_buscar);
     break;
     case 3:
 
@@ -112,7 +131,7 @@ switch (eleccion){
     case 6:
     break;
     default:
-        printf("ERROR")
+        printf("ERROR");
     break;
 }
 

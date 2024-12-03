@@ -22,18 +22,29 @@ typedef struct{
 	int id;
 	char titulo_libro[MAX_TITULO];
 	char autor_libro[MAX_AUTORES];
+    float precio_libro;
 	Categorias categoria;
-	float precio_libro;
 	int cantidadDispo;
 }Biblioteca;
+
+const char* obtenerNombreCategoria(Categorias categoria) {
+    switch (categoria) {
+        case FICCION: return "FICCION";
+        case POESIA: return "POESIA";
+        case NO_FICCION: return "NO_FICCION";
+        case TEATRO: return "TEATRO";
+        case ENSAYO: return "ENSAYO";
+        default: return "Categoría desconocida";
+    }
+}
 
 void mostrarLibros(Biblioteca *catalogo) {
     for (int i = 0; i < MAX_LIBROS; ++i) {
         printf("ID: %d\n", catalogo[i].id);
         printf("Título del libro: %s\n", catalogo[i].titulo_libro);
         printf("Autor del libro: %s\n", catalogo[i].autor_libro);
-        printf("Categoría del libro: %d\n", catalogo[i].categoria);
         printf("Precio del libro: %.2f\n", catalogo[i].precio_libro);
+        printf("Categoría del libro: %s\n", obtenerNombreCategoria(catalogo[i].categoria));
         printf("Disponibilidad del libro: %d\n", catalogo[i].cantidadDispo);
     }
 }
@@ -44,22 +55,58 @@ void busacarId(Biblioteca * catalogo, int id){
         printf("ID: %d\n", catalogo[i].id);
         printf("Título del libro: %s\n", catalogo[i].titulo_libro);
         printf("Autor del libro: %s\n", catalogo[i].autor_libro);
-        printf("Categoría del libro: %d\n", catalogo[i].categoria);
         printf("Precio del libro: %.2f\n", catalogo[i].precio_libro);
+        printf("Categoría del libro: %s\n", obtenerNombreCategoria(catalogo[i].categoria));
         printf("Disponibilidad del libro: %d\n", catalogo[i].cantidadDispo);
-        break;
-        }else{
-        printf("ERROR");
-        break;
+        return;
     }
     }
+    printf("ERROR\n");
 
 }
 void aumentarstock(Biblioteca * catalogo, int id, int cantidad_aumentar){
   
-   catalogo[cantidad_aumentar].cantidadDispo+=cantidad_aumentar;
+   catalogo[id].cantidadDispo+=cantidad_aumentar;
    
    printf("La cantidad que has añadido es: %d\n", cantidad_aumentar);
+
+
+}
+
+void mostrarLibrosCategoria(Biblioteca * catalogo, const char* categoria){ 
+// es la forma de llamar a las categorias de la funcion de obtenerNombreCategoria
+   for(int i=0;i<MAX_LIBROS;i++){
+        if (strcmp(obtenerNombreCategoria(catalogo[i].categoria), categoria) == 0){
+        printf("ID: %d\n", catalogo[i].id);
+        printf("Título del libro: %s\n", catalogo[i].titulo_libro);
+        printf("Autor del libro: %s\n", catalogo[i].autor_libro);
+        printf("Precio del libro: %.2f\n", catalogo[i].precio_libro);
+        printf("Categoría del libro: %s\n", obtenerNombreCategoria(catalogo[i].categoria));
+        printf("Disponibilidad del libro: %d\n", catalogo[i].cantidadDispo);
+    }
+    } 
+    printf("ERROR\n");
+}
+
+void mostrarLibrosAutor(Biblioteca * catalogo, char * autor){
+    int encontrado = 0;//Nos indica si se ha encontrado el autor, si se encuentra sera = 1 y si no = 0
+
+    for(int i=0;i<MAX_LIBROS;i++){
+        if (strcmp(catalogo[i].autor_libro, autor) == 0){
+        printf("ID: %d\n", catalogo[i].id);
+        printf("Título del libro: %s\n", catalogo[i].titulo_libro);
+        printf("Autor del libro: %s\n", catalogo[i].autor_libro);
+        printf("Precio del libro: %.2f\n", catalogo[i].precio_libro);
+        printf("Categoría del libro: %s\n", obtenerNombreCategoria(catalogo[i].categoria));
+        printf("Disponibilidad del libro: %d\n", catalogo[i].cantidadDispo);     
+        
+        encontrado=1;
+    }
+    } 
+    if (encontrado == 0){
+        printf("APRENDE A ESCRIBIR\n");
+    } 
+
 }
 
 int main(){
@@ -140,14 +187,29 @@ switch (eleccion){
 
     break;
     case 4:
-        
+        //ALTERNATIVA GROTESCA
+        // int categoria_ingresada;
+        // printf("Introduce la categoria (FICCION(1), POESIA(2), NO_FICCION(3), TEATRO(4), ENSAYO(5))\n");
+        // scanf("%d", &categoria_ingresada);
+        // mostrarLibrosCategoria(libros, obtenerNombreCategoria(categoria_ingresada-1));
+
+        //ALTERNATVA ELABORADA
+        char categoria_ingresada[MAX_TITULO];
+        printf("Introduce la categoria (FICCION, POESIA, NO_FICCION, TEATRO ENSAYO)\n");
+        scanf("%s", categoria_ingresada);
+        mostrarLibrosCategoria(libros, categoria_ingresada);
     break;
     case 5:
+        char autor_ingresado[MAX_AUTORES];
+        printf("Introduce el autor: \n");
+        scanf("%s", autor_ingresado);
+        mostrarLibrosAutor(libros,autor_ingresado);
     break;
     case 6:
+        printf("Saliendo...\n");
     break;
     default:
-        printf("ERROR");
+        printf("Introduce un numero del 1-6 \n");
     break;
 }
 

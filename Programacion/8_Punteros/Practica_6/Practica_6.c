@@ -55,7 +55,12 @@ void busacarId(Biblioteca * catalogo, int id){
     }
 
 }
-
+void aumentarstock(Biblioteca * catalogo, int id, int cantidad_aumentar){
+  
+   catalogo[cantidad_aumentar].cantidadDispo+=cantidad_aumentar;
+   
+   printf("La cantidad que has añadido es: %d\n", cantidad_aumentar);
+}
 
 int main(){
 Biblioteca libros[MAX_LIBROS] = {
@@ -108,7 +113,7 @@ Biblioteca libros[MAX_LIBROS] = {
         3. Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente.\n\
         4. Mostrar todos los libros de la categoría dada como argumento.\n\
         5. Mostrar los libros del autor dado como argumento.\n\
-        6. Salir");
+        6. Salir\n");
     scanf("%d",&eleccion);
 
 switch (eleccion){
@@ -122,9 +127,20 @@ switch (eleccion){
         busacarId(libros,id_buscar);
     break;
     case 3:
+        int id_aumentar;
+        printf("Introduce el ID del libro del que quiere aumentar el stock:\n");
+        scanf("%d", &id_aumentar);
+        busacarId(libros,id_aumentar);
+        int aumento;
+        printf("¿Qué cantidad quires añadir?:\n");
+        scanf("%d",&aumento);
+
+        aumentarstock(libros,id_aumentar-1,aumento);
+        busacarId(libros,id_aumentar);
 
     break;
     case 4:
+        
     break;
     case 5:
     break;

@@ -1,0 +1,23 @@
+#padre{
+    display: flex;
+    flex-direction: row;/*flex-direction:columns*/
+    flex-wrap: wrap;
+    background-color: red;
+    padding: 10px;
+    gap: 5pt;
+}
+#cajaVerde{
+   width: 50vw;
+    background-color: greenyellow;
+   
+}
+#cajaMorada{
+    width: 30vw;
+    background-color: purple;
+   
+}
+#cajaAmarilla{
+    width: 100vw;
+    background-color: yellow;
+ 
+}

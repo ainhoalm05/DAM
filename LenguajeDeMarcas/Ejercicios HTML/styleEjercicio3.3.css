@@ -1,0 +1,48 @@
+p{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: justify;
+}
+#cajaPadre{
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+    grid-template-rows: 33vh;
+}
+#cajaAmarilla{
+    background-color: yellow;
+}
+h1{
+    background-color: orange;
+    text-align: center;
+}
+#cajaAzul{
+    background-color: blue;
+    padding: 10px;
+}
+#cajaAzul1{
+    position: relative;
+    width: 15vw;
+    height: 3vh;
+    text-align: center;
+    border: 1px solid white;
+    background-color: teal;
+}
+a{
+    color: white;
+}
+#cajaRosa{
+    background-color: palevioletred;
+    grid-column: 1/3;
+    padding: 10px;
+}
+table,tr,td{
+    margin: 0 auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: purple;
+    width: 50vw;
+    text-align: left;
+}
+#cajaVerde{
+    grid-column: 2/3;
+    background-color: green;
+}

@@ -9,7 +9,6 @@
  */
 #define MAX_TITULO 80
 #define MAX_AUTORES 50
-#define MAX_LIBROS 40
 typedef enum{
     FICCION,
     POESIA,
@@ -53,7 +52,7 @@ const Categorias  stringToEnum(char categoria[30]) {
     }
     }
 /*PRINTEA LA INFORMACION DE LOS LIBROS*/
-void imprimirLibro(Biblioteca *catalogo){
+void imprimirLibro(Biblioteca *catalogo, int * total_libros){
 //Meto todos los printf para reutilizar esta funcion en el resto de la practica y hacerlo mas legible
     printf("ID: %d\n", catalogo->id);
     printf("Título del libro: %s\n", catalogo->titulo_libro);
@@ -64,17 +63,17 @@ void imprimirLibro(Biblioteca *catalogo){
     printf("Disponibilidad del libro: %d\n", catalogo->cantidadDispo);
 }
 /*IMPRIME TODA LA BIBLIOTECA*/
-void mostrarLibros(Biblioteca *catalogo) {
-    for (int i = 0; i < MAX_LIBROS; ++i) {
-     imprimirLibro(&catalogo[i]);
+void mostrarLibros(Biblioteca *catalogo, int * total_libros) {
+    for (int i = 0; i < *total_libros; ++i) {
+     imprimirLibro(&catalogo[i],total_libros);
  }
 }
 /*IMPRIME EL LIBRO CORRESPONDIENTE AL ID QUE INTRODUCE EL USUARIO*/
-void busacarId(Biblioteca * catalogo, int id){
-    for(int i=0;i<MAX_LIBROS;i++){
+void busacarId(Biblioteca * catalogo, int id, int * total_libros){
+    for(int i=0;i<*total_libros;i++){
         if (catalogo[i].id==id){
         //Si el id del array de los libros es igual al id que ha introducido el usuario lo imprime
-            imprimirLibro(&catalogo[i]);
+            imprimirLibro(&catalogo[i],total_libros);
         return;//se sale
     }
 }
@@ -82,7 +81,7 @@ printf("Ese ID no esta en la Biblioteca\n");
 
 }
 /*AUMENTA LA DISPONIBILIDAD DEL LIBRO QUE ELIJA EL USUARIO*/
-void aumentarstock(Biblioteca * catalogo, int id, int cantidad_aumentar){
+void aumentarstock(Biblioteca * catalogo, int id, int cantidad_aumentar, int * total_libros){
    //Se ejecuta despues de la funcion buscarId
    catalogo[id].cantidadDispo+=cantidad_aumentar;
    //El id que indicamos(buscarId), de ese id, la disponibilidad que tiene le sumamos la cantidad que ingresa el usuario para aumentarla
@@ -90,15 +89,15 @@ void aumentarstock(Biblioteca * catalogo, int id, int cantidad_aumentar){
    printf("La cantidad que has añadido es: %d\n", cantidad_aumentar);
 }
 /*MUESTRA LOS LIBROS DE LA MISMA CATEGORIA*/
-void mostrarLibrosCategoria(Biblioteca * catalogo, const char* categoria){ 
+void mostrarLibrosCategoria(Biblioteca * catalogo, const char* categoria, int * total_libros){ 
 // Es la forma de llamar a las categorias de la funcion (NO SE PUEDE LLAMAR A LA FUNCION) de obtenerNombreCategoria
 //Nos indica si se ha encontrado el autor, si se encuentra sera = 1 y si no = 0
     int encontrado=0;
-    for(int i=0;i<MAX_LIBROS;i++){
+    for(int i=0;i<*total_libros;i++){
         if (strcmp(obtenerNombreCategoria(catalogo[i].categoria), categoria) == 0){
         //Compara la entrada de texto que introduce el usuario con las categorias que hemos definido en obtenerNombreCategoria
         //y si no hay ninguna diferencia imprime los libros que tengan la misma cagoria
-            imprimirLibro(&catalogo[i]);
+            imprimirLibro(&catalogo[i],total_libros);
             encontrado=1;
         }
     }
@@ -108,9 +107,9 @@ void mostrarLibrosCategoria(Biblioteca * catalogo, const char* categoria){
  } 
 }
 
-void mostrarLibrosAutor(Biblioteca * catalogo, char * autor){
+void mostrarLibrosAutor(Biblioteca * catalogo, char * autor, int * total_libros){
     int encontrado;//Nos indica si se ha encontrado el autor, si se encuentra sera = 1 y si no = 0
-    for(int i=0;i<MAX_LIBROS;i++){
+    for(int i=0;i<*total_libros;i++){
         encontrado=0;//Reinicio la variable
         for (int j = 0; j < (MAX_AUTORES - (strlen(autor)-1)); ++j){
 
@@ -119,7 +118,7 @@ void mostrarLibrosAutor(Biblioteca * catalogo, char * autor){
         };
 
         if (encontrado==1){
-            imprimirLibro(&catalogo[i]);
+            imprimirLibro(&catalogo[i],total_libros);
             break;
         };
     };
@@ -132,11 +131,11 @@ Biblioteca inicializarLibro( int id, char * titulo_libro, char * autor_libro, fl
     libro.id=id;
     strcpy(libro.titulo_libro, titulo_libro);//strcpy para copiar el espacio del string 
     strcpy(libro.autor_libro, autor_libro);
-    libro.precio_libro=precio_libro;
-    libro.categoria=categoria;
-    libro.cantidadDispo;
+    libro.precio_libro =    precio_libro;
+    libro.categoria = categoria;
+    libro.cantidadDispo = cantidadDispo;
 
-    total_libros+=1;
+    *total_libros+=1;
     return(libro);//La funcion devuelbe un libro
 
 }
@@ -159,17 +158,17 @@ Biblioteca añadirlibro(Biblioteca * catalogo, int * total_libros){
     scanf("%s",categoria);
     printf("Introduce la disponibilidad del libro:\n");
     scanf("%d",&cantidadDispo);
+    catalogo=(Biblioteca*)realloc(catalogo,sizeof(Biblioteca)*(*total_libros+1));
 
     Biblioteca libro=inicializarLibro(id,titulo_libro,autor_libro,precio_libro,stringToEnum(categoria),cantidadDispo,total_libros);
 
-    catalogo=(Biblioteca*)realloc(catalogo,sizeof(Biblioteca)*(*total_libros+1));
     return(libro);
 
     
 }
 int main(int argc, char ** argv){
     int total_libros=0;
-    Biblioteca * libros=(Biblioteca*)malloc(sizeof(Biblioteca)*MAX_LIBROS); 
+    Biblioteca * libros=(Biblioteca*)malloc(sizeof(Biblioteca)*40); 
         libros[0] = inicializarLibro(1, "To Kill a Mockingbird", "Harper Lee", 15.99, FICCION, 10,&total_libros);//&total_libros: suma los libros a la variable;
         libros[1] = inicializarLibro(2, "1984", "George Orwell", 12.49, FICCION, 5,&total_libros);
         libros[2] = inicializarLibro(3, "The Great Gatsby", "F. Scott Fitzgerald", 10.99, FICCION, 8,&total_libros);
@@ -211,40 +210,41 @@ int main(int argc, char ** argv){
         libros[38] = inicializarLibro(39, "The Republic", "Plato", 16.00, ENSAYO, 6,&total_libros);
         libros[39] = inicializarLibro(40, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ENSAYO, 10,&total_libros);
     
-//Libro * catalogo=(Libro*)malloc(sizeof(Libro)*MAX_LIBROS);
+//Libro * catalogo=(Libro*)malloc(sizeof(Libro)*total_libros);
     if (argc==1){
             //Caso inicial
     }else if(argc==2){
             //Mostrar o añadir
         if(strcmp(argv[1],"mostrar")==0){
-                mostrarLibros(libros); //Llamar a la funcion de mostrar
+                mostrarLibros(libros,&total_libros); //Llamar a la funcion de mostrar
             }else if(strcmp(argv[1],"añadir")==0){
                libros[total_libros]=añadirlibro(libros,&total_libros);//Llamar a la funcion de añadir
-                mostrarLibros(libros); //Llamar a la funcion de mostrar
+                mostrarLibros(libros,&total_libros); //Llamar a la funcion de mostrar
             
             }
         }else if(argc==3){
             if(strcmp(argv[1],"mostrar")==0){
                 int id_buscar;
                 id_buscar=atoi(argv[2]);
-                busacarId(libros,id_buscar);//Llamar a la funcion de mostrar
+                busacarId(libros,id_buscar,&total_libros);//Llamar a la funcion de mostrar
             }else if(strcmp(argv[1],"autor")==0){
                 char autor_ingresado[MAX_AUTORES];
                 // fgets(autor_ingresado, MAX_AUTORES, stdin);//nombreVariable, tamañoVariable, stdin(mandarlo al programa)
                 // strcpy(autor_ingresado[MAX_AUTORES],argv[2]);
-                mostrarLibrosAutor(libros,argv[2]);//Llamar a la funcion de añadir
+                mostrarLibrosAutor(libros,argv[2],&total_libros);//Llamar a la funcion de añadir
             }else if(strcmp(argv[1],"categoria")==0){
-                mostrarLibrosCategoria(libros, argv[2]);//Llamar a la funcion de añadir
+                mostrarLibrosCategoria(libros, argv[2],&total_libros);//Llamar a la funcion de añadir
             }
         }else if(strcmp(argv[1],"stock")==0){
             int id_aumentar;
             id_aumentar=atoi(argv[2]);
-            busacarId(libros,id_aumentar);
+            busacarId(libros,id_aumentar,&total_libros);
             int aumento;
             aumento=atoi(argv[3]);
 
-            aumentarstock(libros,id_aumentar-1,aumento);
-                busacarId(libros,id_aumentar);//Llamar a la funcion de añadir
+            aumentarstock(libros,id_aumentar-1,aumento,&total_libros);
+                busacarId(libros,id_aumentar,&total_libros
+                );//Llamar a la funcion de añadir
             }
             return 0;
 

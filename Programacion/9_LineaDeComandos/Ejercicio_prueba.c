@@ -56,7 +56,7 @@ int main(int argc, char ** argv){
 }
 
 for (int i = 0; i < argc; ++i){
-	printf("t Argumento %d: %sn", i,argv[i]);
+	printf("\t Argumento %d: %sn", i,argv[i]);
 }
 if (argc == 1){//argc SIEMPRE ES 1
 	if (strcmp(argv[1],"mostrar\0")==0){

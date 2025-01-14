@@ -41,7 +41,7 @@ const char* obtenerNombreCategoria(Categorias categoria) {
 const Categorias  stringToEnum(char categoria[30]) {
 //declaro una variable constante dado que el valor de las categorias no va a cambiar en nungun caso
 //y lo hago en una funcion para poder reutilizarla en todos los printf de las categorias y para la funcion de buscar por categorias
-    
+
     if (strcmp(categoria,"FICCION")==0) return FICCION;
     else if (strcmp(categoria,"POESIA")==0) return POESIA;
     else if (strcmp(categoria,"NO_FICCION")==0) return NO_FICCION;
@@ -50,7 +50,7 @@ const Categorias  stringToEnum(char categoria[30]) {
     else {
         printf("ERROR");
     }
-    }
+}
 /*PRINTEA LA INFORMACION DE LOS LIBROS*/
 void imprimirLibro(Biblioteca *catalogo, int * total_libros){
 //Meto todos los printf para reutilizar esta funcion en el resto de la practica y hacerlo mas legible
@@ -65,8 +65,8 @@ void imprimirLibro(Biblioteca *catalogo, int * total_libros){
 /*IMPRIME TODA LA BIBLIOTECA*/
 void mostrarLibros(Biblioteca *catalogo, int * total_libros) {
     for (int i = 0; i < *total_libros; ++i) {
-     imprimirLibro(&catalogo[i],total_libros);
- }
+       imprimirLibro(&catalogo[i],total_libros);
+   }
 }
 /*IMPRIME EL LIBRO CORRESPONDIENTE AL ID QUE INTRODUCE EL USUARIO*/
 void busacarId(Biblioteca * catalogo, int id, int * total_libros){
@@ -83,10 +83,10 @@ printf("Ese ID no esta en la Biblioteca\n");
 /*AUMENTA LA DISPONIBILIDAD DEL LIBRO QUE ELIJA EL USUARIO*/
 void aumentarstock(Biblioteca * catalogo, int id, int cantidad_aumentar, int * total_libros){
    //Se ejecuta despues de la funcion buscarId
-   catalogo[id].cantidadDispo+=cantidad_aumentar;
+ catalogo[id].cantidadDispo+=cantidad_aumentar;
    //El id que indicamos(buscarId), de ese id, la disponibilidad que tiene le sumamos la cantidad que ingresa el usuario para aumentarla
 
-   printf("La cantidad que has añadido es: %d\n", cantidad_aumentar);
+ printf("La cantidad que has añadido es: %d\n", cantidad_aumentar);
 }
 /*MUESTRA LOS LIBROS DE LA MISMA CATEGORIA*/
 void mostrarLibrosCategoria(Biblioteca * catalogo, const char* categoria, int * total_libros){ 
@@ -102,9 +102,9 @@ void mostrarLibrosCategoria(Biblioteca * catalogo, const char* categoria, int * 
         }
     }
     if(encontrado ==0){
-     printf("Esa categoria no existe\n");
+       printf("Esa categoria no existe\n");
 
- } 
+   } 
 }
 
 void mostrarLibrosAutor(Biblioteca * catalogo, char * autor, int * total_libros){
@@ -113,7 +113,7 @@ void mostrarLibrosAutor(Biblioteca * catalogo, char * autor, int * total_libros)
         encontrado=0;//Reinicio la variable
         for (int j = 0; j < (MAX_AUTORES - (strlen(autor)-1)); ++j){
 
-           if (strncmp(catalogo[i].autor_libro+j, autor,strlen(autor)-1) == 0){
+         if (strncmp(catalogo[i].autor_libro+j, autor,strlen(autor)-1) == 0){
             encontrado=1;
         };
 
@@ -148,6 +148,8 @@ Biblioteca añadirlibro(Biblioteca * catalogo, int * total_libros){
     char categoria[30];
     int cantidadDispo;
 
+    catalogo=(Biblioteca*)realloc(catalogo,sizeof(Biblioteca)*(*total_libros+1));
+
     printf("Introduce el titulo del libro:\n");
     fgets(titulo_libro, MAX_TITULO, stdin);
     printf("Introduce el autor del libro:\n");
@@ -158,7 +160,6 @@ Biblioteca añadirlibro(Biblioteca * catalogo, int * total_libros){
     scanf("%s",categoria);
     printf("Introduce la disponibilidad del libro:\n");
     scanf("%d",&cantidadDispo);
-    catalogo=(Biblioteca*)realloc(catalogo,sizeof(Biblioteca)*(*total_libros+1));
 
     Biblioteca libro=inicializarLibro(id,titulo_libro,autor_libro,precio_libro,stringToEnum(categoria),cantidadDispo,total_libros);
 
@@ -209,18 +210,31 @@ int main(int argc, char ** argv){
         libros[37] = inicializarLibro(38, "The Communist Manifesto", "Karl Marx and Friedrich Engels", 5.99, ENSAYO, 12,&total_libros);
         libros[38] = inicializarLibro(39, "The Republic", "Plato", 16.00, ENSAYO, 6,&total_libros);
         libros[39] = inicializarLibro(40, "Thus Spoke Zarathustra", "Friedrich Nietzsche", 14.99, ENSAYO, 10,&total_libros);
-    
+
 //Libro * catalogo=(Libro*)malloc(sizeof(Libro)*total_libros);
-    if (argc==1){
-            //Caso inicial
-    }else if(argc==2){
+        if (argc==1){
+            printf("Uso de biblioteca: \n\
+        ./biblioteca mostrar\n\
+                Para mostrar todo el catálogo de libros\n\
+        ./biblioteca mostrar ID\n\
+                Para mostrar el libro cuyo identificador es ID.\n\
+        ./biblioteca stock ID cantidad\n\
+                Para aumentar el stock del libro que indicas\n\
+        ./biblioteca categoria\n\
+                Muestra todos los libros de una categoria\n\
+        ./biblioteca autor\n\
+                Muestra los libros de un autor\n\
+        ./biblioteca añadir\n\
+                Para añadir un libro nuevo\n\
+        "); //Instrucciones del programa
+        }else if(argc==2){
             //Mostrar o añadir
-        if(strcmp(argv[1],"mostrar")==0){
+            if(strcmp(argv[1],"mostrar")==0){
                 mostrarLibros(libros,&total_libros); //Llamar a la funcion de mostrar
             }else if(strcmp(argv[1],"añadir")==0){
                libros[total_libros]=añadirlibro(libros,&total_libros);//Llamar a la funcion de añadir
                 mostrarLibros(libros,&total_libros); //Llamar a la funcion de mostrar
-            
+
             }
         }else if(argc==3){
             if(strcmp(argv[1],"mostrar")==0){
@@ -243,78 +257,81 @@ int main(int argc, char ** argv){
             aumento=atoi(argv[3]);
 
             aumentarstock(libros,id_aumentar-1,aumento,&total_libros);
-                busacarId(libros,id_aumentar,&total_libros
+            busacarId(libros,id_aumentar,&total_libros
                 );//Llamar a la funcion de añadir
-            }
-            return 0;
-
-    //       int eleccion;
-    //       printf("Elige una opcion: \n\
-    //         1. Mostrar todos los libros.\n\
-    //         2. Mostrar el libro que coincida con el ID o un mensaje de error.\n\
-    //         3. Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente.\n\
-    //         4. Mostrar todos los libros de la categoría dada como argumento.\n\
-    //         5. Mostrar los libros del autor dado como argumento.\n\
-    //         6. Salir\n");
-    //       scanf("%d",&eleccion);
-
-    //       switch (eleccion){
-    //       case 1:
-    //         mostrarLibros(libros);
-    //         break;
-    //     case 2:
-    //         int id_buscar;
-    //         printf("Intduce el ID del libro: \n");
-    //         scanf("%d",&id_buscar);
-    //         busacarId(libros,id_buscar);
-    //         break;
-    //     case 3:
-    //         int id_aumentar;
-    //         printf("Introduce el ID del libro del que quiere aumentar el stock:\n");
-    //         scanf("%d", &id_aumentar);
-    //         busacarId(libros,id_aumentar);
-    //         int aumento;
-    //         printf("¿Qué cantidad quires añadir?:\n");
-    //         scanf("%d",&aumento);
-
-    //         aumentarstock(libros,id_aumentar-1,aumento);
-    //         busacarId(libros,id_aumentar);
-
-    //         break;
-    //     case 4:
-    //     //ALTERNATIVA GROTESCA
-    //     // int categoria_ingresada;
-    //     // printf("Introduce la categoria (FICCION(1), POESIA(2), NO_FICCION(3), TEATRO(4), ENSAYO(5))\n");
-    //     // scanf("%d", &categoria_ingresada);
-    //     // mostrarLibrosCategoria(libros, obtenerNombreCategoria(categoria_ingresada-1));
-
-    //     //ALTERNATVA ELABORADA
-    //         char categoria_ingresada[MAX_TITULO];
-    //         printf("Introduce la categoria (FICCION, POESIA, NO_FICCION, TEATRO ENSAYO)\n");
-    //         scanf("%s", categoria_ingresada);
-    //         mostrarLibrosCategoria(libros, categoria_ingresada);
-    //         break;
-    //     case 5:
-    //         char autor_ingresado[MAX_AUTORES];
-    //         printf("Introduce el autor: \n");
-    //     scanf(" ");//Para que el fgets ignore el enter
-    //     fgets(autor_ingresado, MAX_AUTORES, stdin);//nombreVariable, tamañoVariable, stdin(mandarlo al programa)
-    //     mostrarLibrosAutor(libros,autor_ingresado);
-    //     break;
-    //     case 6:
-            
-    //     break;
-    // case 7:
-    //     printf("Saliendo...\n");
-    //     break;
-    // default:
-    //     printf("Introduce un numero del 1-6 \n");
-    //     break;
-    // }
-
-
-    // return 0;
         }
+
+        free(libros);
+        return 0;
+/*
+       int eleccion;
+       printf("Elige una opcion: \n\
+         1. Mostrar todos los libros.\n\
+         2. Mostrar el libro que coincida con el ID o un mensaje de error.\n\
+         3. Aumentar el stock del libro ID en la cantidad dada como argumento e imprimir la información pertinente.\n\
+         4. Mostrar todos los libros de la categoría dada como argumento.\n\
+         5. Mostrar los libros del autor dado como argumento.\n\
+         6. Salir\n");
+       scanf("%d",&eleccion);
+
+       switch (eleccion){
+       case 1:
+         mostrarLibros(libros);
+         break;
+     case 2:
+         int id_buscar;
+         printf("Intduce el ID del libro: \n");
+         scanf("%d",&id_buscar);
+         busacarId(libros,id_buscar);
+         break;
+     case 3:
+         int id_aumentar;
+         printf("Introduce el ID del libro del que quiere aumentar el stock:\n");
+         scanf("%d", &id_aumentar);
+         busacarId(libros,id_aumentar);
+         int aumento;
+         printf("¿Qué cantidad quires añadir?:\n");
+         scanf("%d",&aumento);
+
+         aumentarstock(libros,id_aumentar-1,aumento);
+         busacarId(libros,id_aumentar);
+
+         break;
+     case 4:
+         //ALTERNATIVA GROTESCA
+         // int categoria_ingresada;
+         // printf("Introduce la categoria (FICCION(1), POESIA(2), NO_FICCION(3), TEATRO(4), ENSAYO(5))\n");
+         // scanf("%d", &categoria_ingresada);
+         // mostrarLibrosCategoria(libros, obtenerNombreCategoria(categoria_ingresada-1));
+
+         //ALTERNATVA ELABORADA
+             char categoria_ingresada[MAX_TITULO];
+             printf("Introduce la categoria (FICCION, POESIA, NO_FICCION, TEATRO ENSAYO)\n");
+             scanf("%s", categoria_ingresada);
+             mostrarLibrosCategoria(libros, categoria_ingresada);
+             break;
+         case 5:
+             char autor_ingresado[MAX_AUTORES];
+             printf("Introduce el autor: \n");
+         scanf(" ");//Para que el fgets ignore el enter
+         fgets(autor_ingresado, MAX_AUTORES, stdin);//nombreVariable, tamañoVariable, stdin(mandarlo al programa)
+         mostrarLibrosAutor(libros,autor_ingresado);
+         break;
+         case 6:
+            
+         break;
+     case 7:
+         printf("Saliendo...\n");
+         break;
+     default:
+         printf("Introduce un numero del 1-6 \n");
+         break;
+     }
+
+
+     return 0;
+*/
+    }
 
 
 

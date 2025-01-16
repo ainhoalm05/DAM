@@ -18,9 +18,9 @@ typedef enum{
 }Categorias;
 
 typedef struct{
-	int id;
-	char titulo_libro[MAX_TITULO];
-	char autor_libro[MAX_AUTORES];
+    int id;
+    char titulo_libro[MAX_TITULO];
+    char autor_libro[MAX_AUTORES];
     float precio_libro;
     Categorias categoria;
     int cantidadDispo;
@@ -52,6 +52,7 @@ const Categorias  stringToEnum(char categoria[30]) {
     }
 }
 /*PRINTEA LA INFORMACION DE LOS LIBROS*/
+<<<<<<< HEAD
 void imprimirLibro(const Biblioteca * const catalogo){
 //Meto todos los printf para reutilizar esta funcion en el resto de la practica y hacerlo mas legible
     printf("ID: %d\n", catalogo->id);
@@ -171,6 +172,23 @@ void añadirlibro(Biblioteca ** catalogo, int * total_libros){
 
     
 }
+=======
+void imprimirLibro();   
+/*IMPRIME TODA LA BIBLIOTECA*/
+void mostrarLibros(); 
+/*IMPRIME EL LIBRO CORRESPONDIENTE AL ID QUE INTRODUCE EL USUARIO*/
+void busacarId();
+/*AUMENTA LA DISPONIBILIDAD DEL LIBRO QUE ELIJA EL USUARIO*/
+void aumentarstock();
+/*MUESTRA LOS LIBROS DE LA MISMA CATEGORIA*/
+void mostrarLibrosCategoria();
+/*MUESTRA LOS LIBROS DE UN AUTOR*/
+void mostrarLibrosAutor();
+/*FUNCION PARA INICIALIZAR UN LIBRO*/
+Biblioteca inicializarLibro();
+/*AÑADIR UN LIBRO AL CATALOGO*/
+void añadirlibro();
+>>>>>>> 2c28e29da74c05738267b5490a72f27105ad8a5d
 int main(int argc, char ** argv){
     int total_libros=0;//Variable para almacenar todos los libros(nos servira tmbn para el ID)
     Biblioteca * libros=(Biblioteca*)malloc(sizeof(Biblioteca)*40); //Guardamos los libros en memoria dinamica
@@ -237,7 +255,11 @@ int main(int argc, char ** argv){
             if(strcmp(argv[1],"mostrar")==0){
                 mostrarLibros(libros,&total_libros); //Llamar a la funcion de mostrar
             }else if(strcmp(argv[1],"añadir")==0){
+<<<<<<< HEAD
                añadirlibro(&libros,&total_libros);//Llamar a la funcion de añadir(sin asignacion porque es una funcion void)
+=======
+               libros[total_libros]=añadirlibro(&libros,&total_libros);//Llamar a la funcion de añadir
+>>>>>>> 2c28e29da74c05738267b5490a72f27105ad8a5d
                 mostrarLibros(libros,&total_libros); //Llamar a la funcion de mostrar
 
             }
@@ -265,7 +287,132 @@ int main(int argc, char ** argv){
             busacarId(libros,id_aumentar,&total_libros
                 );//Llamar a la funcion de añadir
         }
+/////////////
+//FUNCIONES//
+/////////////
 
+<<<<<<< HEAD
+=======
+    imprimirLibro(const Biblioteca * const catalogo, const int * total_libros){
+//Meto todos los printf para reutilizar esta funcion en el resto de la practica y hacerlo mas legible
+    printf("ID: %d\n", catalogo->id);
+    printf("Título del libro: %s\n", catalogo->titulo_libro);
+    printf("Autor del libro: %s\n", catalogo->autor_libro);
+    printf("Precio del libro: %.2f\n", catalogo->precio_libro);
+    printf("Categoría del libro: %s\n", obtenerNombreCategoria(catalogo->categoria));
+        //tambien se puede llamar con %d,catalogo[i].categoria, pero imprime el numero de la categoria (porque las almacenamos en un enum)
+    printf("Disponibilidad del libro: %d\n", catalogo->cantidadDispo);
+}
+
+    mostrarLibros(const Biblioteca * const catalogo, int * total_libros) {
+    for (int i = 0; i < *total_libros; ++i) {
+       imprimirLibro(&catalogo[i],total_libros);
+   }
+}
+    busacarId(const Biblioteca * const catalogo, int id, int * total_libros){
+    for(int i=0;i<*total_libros;i++){//recorre todos los libros
+        if (catalogo[i].id==id){//si coincide el id que ha introducido el usuario con el de la biblioteca, lo imprime
+        //Si el id del array de los libros es igual al id que ha introducido el usuario lo imprime
+            imprimirLibro(&catalogo[i],total_libros);
+        return;//se sale
+    }
+}
+printf("Ese ID no esta en la Biblioteca\n");
+
+}
+/*AUMENTA LA DISPONIBILIDAD DEL LIBRO QUE ELIJA EL USUARIO*/
+    aumentarstock(Biblioteca *  catalogo, int id, int cantidad_aumentar,const int * total_libros){
+   //Se ejecuta despues de la funcion buscarId
+    catalogo[id].cantidadDispo+=cantidad_aumentar;
+   //El id que indicamos(buscarId), de ese id, la disponibilidad que tiene le sumamos la cantidad que ingresa el usuario para aumentarla
+
+    printf("La cantidad que has añadido es: %d\n", cantidad_aumentar);
+}
+/*MUESTRA LOS LIBROS DE LA MISMA CATEGORIA*/
+    mostrarLibrosCategoria(const Biblioteca * const catalogo, const char* categoria, int * total_libros){ 
+// Es la forma de llamar a las categorias de la funcion (NO SE PUEDE LLAMAR A LA FUNCION) de obtenerNombreCategoria
+//Nos indica si se ha encontrado el autor, si se encuentra sera = 1 y si no = 0
+    int encontrado=0;
+    for(int i=0;i<*total_libros;i++){
+        if (strcmp(obtenerNombreCategoria(catalogo[i].categoria), categoria) == 0){
+        //Compara la entrada de texto que introduce el usuario con las categorias que hemos definido en obtenerNombreCategoria
+        //y si no hay ninguna diferencia imprime los libros que tengan la misma cagoria
+            imprimirLibro(&catalogo[i],total_libros);
+            encontrado=1;
+        }
+    }
+    if(encontrado ==0){
+       printf("Esa categoria no existe\n");
+
+   } 
+}
+
+    mostrarLibrosAutor(const Biblioteca * const catalogo, char * autor, int * total_libros){
+    int encontrado;//Nos indica si se ha encontrado el autor, si se encuentra sera = 1 y si no = 0
+    for(int i=0;i<*total_libros;i++){//Recorre todos los libros
+        encontrado=0;//Reinicio la variable
+        for (int j = 0; j < (MAX_AUTORES - (strlen(autor)-1)); ++j){//Recorre el bucle los caracteres que tenga el nombre del autor caracter a caracter  y se resta uno para ignorar los saltos de linea 
+
+         if (strncmp(catalogo[i].autor_libro+j, autor,strlen(autor)-1) == 0){//va a ir comparando caracter a caracter y cuando encuentre uno igual lo guarda
+            encontrado=1;
+        };
+
+        if (encontrado==1){//aqui imprime todas las coincidencias
+            imprimirLibro(&catalogo[i],total_libros);
+            break;//Se sale y vuelve a recorrer el el bucle caracter a caracter
+        };
+    };
+};
+};
+    inicializarLibro(const int id, char * titulo_libro,const char * autor_libro,const float precio_libro,Categorias categoria,const int cantidadDispo, int * total_libros){//Le pasamos todos los parametros que maneja un libro
+    Biblioteca libro;//Declaramos un libro de tipo libro para que a la hora de añadir un nuevo libro tenga la misma estructura que el resto 
+
+    //Indicamos a que pertenecera cada parametro del nuevo libro
+    libro.id=id;
+    strcpy(libro.titulo_libro, titulo_libro);//strcpy para copiar el espacio del string 
+    strcpy(libro.autor_libro, autor_libro);
+    libro.precio_libro = precio_libro;
+    libro.categoria = categoria;
+    libro.cantidadDispo = cantidadDispo;
+
+    *total_libros+=1;//Se suma uno al total de libros cuando se añada un nuevo libro(40+1) 
+    return(libro);//La funcion devuelbe un libro
+
+}
+     añadirlibro(Biblioteca ** catalogo, int * total_libros){
+
+    int id=*total_libros+1;//Declaracion de las viriables del libro nuevo
+    char titulo_libro[MAX_TITULO];
+    char autor_libro[MAX_AUTORES];
+    float precio_libro;
+    char categoria[30];
+    int cantidadDispo;
+
+    *catalogo=(Biblioteca*)realloc(*catalogo,sizeof(Biblioteca)*(*total_libros+1));//Esta funcion duplica el espacio de la biblioteca para añadir los libros nuevos (*total_libros + 1)
+    Biblioteca libro;
+    //Pide los datos del libro nuevo
+    printf("Introduce el titulo del libro:\n");
+    fgets(titulo_libro, MAX_TITULO, stdin);
+    printf("Introduce el autor del libro:\n");
+    fgets(autor_libro, MAX_AUTORES, stdin);
+    printf("Introduce el precio del libro:\n");
+    scanf("%f",&precio_libro);
+    printf("Introduce el nombre de la categoria a la que pertenece el libro(FICCION, POESIA, NO_FICCION, TEATRO, ENSAYO):\n");
+    scanf("%s",categoria);
+    printf("Introduce la disponibilidad del libro:\n");
+    scanf("%d",&cantidadDispo);
+
+   libro=inicializarLibro(id,titulo_libro,autor_libro,precio_libro,stringToEnum(categoria),cantidadDispo,total_libros);
+    //Declaramos un libro de tipo libro para que a la hora de añadir un nuevo libro tenga la misma estructura que el resto
+    //Llamamos a la funcion de incializar libro con los datos que ha introducido el usuario
+
+    catalogo[*total_libros-1]=&libro;
+
+   // return(0);//Devuelbe un libro
+
+    
+}
+>>>>>>> 2c28e29da74c05738267b5490a72f27105ad8a5d
         free(libros);//Liberamos la memoria dinamica al final del programa para que no ocupe tiempo de mas
         return 0;
 //MENU

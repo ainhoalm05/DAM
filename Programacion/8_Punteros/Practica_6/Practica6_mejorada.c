@@ -59,7 +59,7 @@ void imprimirLibro(const Biblioteca * const catalogo);
 /*IMPRIME TODA LA BIBLIOTECA*/
 void mostrarLibros( Biblioteca *  catalogo, int * total_libros); 
 /*IMPRIME EL LIBRO CORRESPONDIENTE AL ID QUE INTRODUCE EL USUARIO*/
-void busacarId(const Biblioteca * const catalogo, int id, int * total_libros);
+void buscarId(const Biblioteca * const catalogo, int id, int * total_libros);
 /*AUMENTA LA DISPONIBILIDAD DEL LIBRO QUE ELIJA EL USUARIO*/
 void aumentarstock(Biblioteca *  catalogo, int id, int cantidad_aumentar,const int * total_libros);
 /*MUESTRA LOS LIBROS DE LA MISMA CATEGORIA*/
@@ -67,7 +67,7 @@ void mostrarLibrosCategoria(const Biblioteca * const catalogo, const char* categ
 /*MUESTRA LOS LIBROS DE UN AUTOR*/
 void mostrarLibrosAutor(const Biblioteca * const catalogo, char * autor, int * total_libros);
 /*FUNCION PARA INICIALIZAR UN LIBRO*/
-Biblioteca inicializarLibro(const int id, char * titulo_libro,const char * autor_libro,const float precio_libro,Categorias categoria,const int cantidadDispo, int * total_libros);
+Biblioteca inicializarLibro(const int id, char * titulo_libro,const char * autor_libro,const float precio_libro,Categorias categoria,const int cantidadDispo, int * total_libros);//Le pasamos todos los parametros que maneja un libro
 /*AÑADIR UN LIBRO AL CATALOGO*/
 void añadirlibro(Biblioteca ** catalogo, int * total_libros);
 
@@ -146,7 +146,7 @@ int main(int argc, char ** argv){
             if(strcmp(argv[1],"mostrar")==0){
                 int id_buscar;
                 id_buscar=atoi(argv[2]);
-                busacarId(libros,id_buscar,&total_libros);//Llamar a la funcion de mostrar
+                buscarId(libros,id_buscar,&total_libros);//Llamar a la funcion de mostrar
             }else if(strcmp(argv[1],"autor")==0){
                 char autor_ingresado[MAX_AUTORES];
                 // fgets(autor_ingresado, MAX_AUTORES, stdin);//nombreVariable, tamañoVariable, stdin(mandarlo al programa)
@@ -158,12 +158,12 @@ int main(int argc, char ** argv){
         }else if(strcmp(argv[1],"stock")==0){
             int id_aumentar;
             id_aumentar=atoi(argv[2]);
-            busacarId(libros,id_aumentar,&total_libros);
+            buscarId(libros,id_aumentar,&total_libros);
             int aumento;
             aumento=atoi(argv[3]);
 
             aumentarstock(libros,id_aumentar-1,aumento,&total_libros);
-            busacarId(libros,id_aumentar,&total_libros);//Llamar a la funcion de añadir
+            buscarId(libros,id_aumentar,&total_libros);//Llamar a la funcion de añadir
         }
 /////////////
 //FUNCIONES//
@@ -186,7 +186,7 @@ void mostrarLibros(const Biblioteca * const  catalogo, int * total_libros) {
    }
 }
 /*IMPRIME EL LIBRO CORRESPONDIENTE AL ID QUE INTRODUCE EL USUARIO*/
-void busacarId(const Biblioteca * const catalogo, int id, int * total_libros){
+void buscarId(const Biblioteca * const catalogo, int id, int * total_libros){
     for(int i=0;i<*total_libros;i++){//recorre todos los libros
         if (catalogo[i].id==id){//si coincide el id que ha introducido el usuario con el de la biblioteca, lo imprime
         //Si el id del array de los libros es igual al id que ha introducido el usuario lo imprime

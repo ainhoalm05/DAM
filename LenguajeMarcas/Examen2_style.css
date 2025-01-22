@@ -1,0 +1,43 @@
+
+#cajaPadre{
+    background-color:cornflowerblue;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    /* Para colocarlas horizontalmente */
+}
+#caja1{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* Hace dos columnas, la de abajo grande, y se repite */
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5pt;
+    width: 50%;
+    padding: 10px;
+    margin: 10px;
+}
+#cajaAzul{
+     background-color: darkturquoise;   
+     grid-column: span 2;
+     margin: 10px;
+     padding: 10px;
+}
+#cajaVerde{
+    background-color: rgb(61, 228, 61);
+    grid-column: span 2;
+    margin: 10px;
+    padding: 10px;
+}
+#cajaAmarilla{
+    background-color: yellow;
+    gap: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+table, th, td{
+    border: 1px solid black;
+}
+footer{
+    background-color: palevioletred;
+    text-align: center;
+}

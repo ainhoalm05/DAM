@@ -1,0 +1,170 @@
+@font-face {
+	font-family:grobold ;
+	src: url(../fonts/grobold.ttf); 
+	font-weight: bold;
+}
+body {
+	background-color: lime;
+}
+div#fondo {
+	background-color: violet;
+	top: 40px;
+	left: 20px;
+	width: 1500px;
+	height: 85%;
+	position: absolute;
+}
+div.chase-texto, div.rocky-texto, div.marshall-texto {
+	color: yellow;
+	font-family: grobold;
+	transition: all 1s ease-in-out;
+}
+div.chase-texto{
+	position: absolute;
+	float: right;
+	left: 140px;
+	top: 35%;
+	height: 20%;
+}
+div.rocky-texto {
+	position: absolute;
+	float: right;
+	left: 140px;
+	top: 60%;
+	height: 20%;
+	
+}
+div.marshall-texto {
+	position: absolute;
+	float: right;
+	left: 140px;
+	top: 90%;
+	height: 20%;
+}
+div.mers-texto, div.rubble-texto, div.zuma-texto {
+	color: aqua;
+	font-family: grobold;
+	transition: all 1s ease-in-out;
+}
+div.mers-texto{
+	position: absolute;
+	float: left;
+	right: 150px;
+	top: 35%;
+	height: 20%;
+}
+div.rubble-texto {
+	position: absolute;
+	float: left;
+	right: 150px;
+	top: 62%;
+	height: 20%;
+}
+div.zuma-texto {
+	position: absolute;
+	float: left;
+	right: 150px;
+	top: 90%;
+	height: 20%;
+}
+img.izquierda, img.derecha, img.centro {
+
+	padding: 20px;
+}
+img.derecha {
+	float: right;
+}
+img.centro {
+
+}
+img.chase {
+	position: absolute;
+	float: right;
+	left: 80px;
+	top: 5%;
+	height: 25%;
+	opacity: .7;
+	transition: all 1s ease-in-out;
+}
+img.mers{
+	position: absolute;
+	float: left;
+	right: 80px;
+	top: 5%;
+	height: 25%;
+	opacity: .7;
+	transition: all 1s ease-in-out;	
+}
+img.rocky {
+	position: absolute;
+	float: right;
+	left: 80px;
+	top: 35%;
+	height: 20%;
+	opacity: .7;
+	transition: all 1s ease-in-out;	
+}
+img.rubble{
+	position: absolute;
+	float: left;
+	right: 80px;
+	top: 35%;
+	height: 25%;
+	opacity: .7;
+	transition: all 1s ease-in-out;	
+}
+img.marshall {
+	position: absolute;
+	float: right;
+	left: 80px;
+	top: 60%;
+	height: 25%;
+	opacity: .7;
+	transition: all 1s ease-in-out;
+}
+img.zuma {
+	position: absolute;
+	float: left;
+	right: 80px;
+	top: 60%;
+	height: 25%;
+	opacity: .7;
+	transition: all 1s ease-in-out;
+}
+img.logo {
+	position: absolute;
+	left: 40%;
+	top: 10%;
+	height: 35%;
+	transition: all 1s ease-in-out;
+}
+img.ryder {
+	position: absolute;
+	left: 40%;
+	top: 37%;
+	height: 35%;
+	transition: all 1s ease-in-out;
+}
+img.chase:hover, 
+img.rocky:hover, 
+img.marshall:hover {
+	opacity: 1;
+	rotate: 300deg;
+}
+img.mers:hover, 
+img.rubble:hover, 
+img.zuma:hover {
+	opacity: 1;
+	rotate: -300deg;
+
+}	
+img.logo:hover, img.ryder:hover {
+	transform: scale(1.4);
+	z-index: 1;
+}
+div.chase-texto:hover, div.rocky-texto:hover, div.marshall-texto:hover {
+	color: aqua ;
+}
+div.mers-texto:hover, div.rubble-texto:hover, div.zuma-texto:hover {
+	color: yellow ;
+}

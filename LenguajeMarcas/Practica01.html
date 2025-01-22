@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset>
+    <!-- <meta name="viewport" content="width=, initial-scale=1.0"> -->
+    <title>Mi primera pagina web</title>
+</head>
+<body>
+    <h1>Bienvenido a mi pagina web</h1>
+    <h2>Etiquetas de texto</h2>
+    <h3>SubSubtitulo</h3>
+    <p><strong>Negrita</strong></p>
+    <p><mark>Resaltado</mark></p>
+    <p><s>Tachado</s></p>
+    <p><u>Subrayado</u></p>
+    <p><q>Comillado</q></p>
+    <p><em>Cursiva</em></p>
+    <p><cite>Cita</cite></p>
+    <p>Superindice<sup>2</sup></p>
+    <p>Subindice <sub>2</sub></p>
+    <p><small>Minimizar la letra</small></p>
+    <p><dfn>Definicion</dfn></p>
+
+    <h2>Listas</h2>
+    <ul>Lista no numerada
+        <li>Lista no numerada</li>
+        <li>Lista no numerada</li>
+        <li>Lista no numerada</li>
+    </ul>
+    <ol>
+        <li>Lista numerada</li>
+        <li>Lista numerada</li>
+        <li>Lista numerada</li>
+    </ol>
+    <ol type="I" start="5" reversed>
+        <li>Lista Mixta</li>
+        <li>Lista Mixta</li>
+            <ul>
+                <li>Lista Mixta</li>
+            </ul>
+    </ol>
+    <img src="gatito.jpg" alt="" width=200px>
+    <img src="gato_despeinado.jpg" alt="" width="200" height="200">
+    <img src="gato_triste.jpg" alt="" width="200" height="200">
+    <br>
+    <section>Enlaces</section>
+    <nav>
+        <a href="https://www.expertoanimal.com/razas-de-gatos.html">Razas de gatitos</a>
+        <a href="#cabecera">Cabecera</a>
+        <a href="#">Cabecera</a>
+        <a href="#lista" target="_blank">Lista</a>
+    </nav>
+    <section>
+    <h2>Multimedia</h2>
+        <picture>
+            <source srcset="">
+            <img src="imagen.png" alt="Imagen">
+        </picture>
+            <iframe width="593" height="334" src="https://www.youtube.com/embed/fYa48OgDpjI" allowfullscreen></iframe>
+            <video src="video.mp4#t=30,40" width="400px" height="400" autoplay muted loop controls></video>
+            <audio src="Halloween.mp3" controls autoplay loop preload="metadata"></audio>
+        
+        <!-- <video src="https://www.youtube.com/864a9b95-9f54-4c99-838f-70aecbdaa592" width="400px" height="400" autoplay muted loop controls></video> -->
+    </section>
+    <h2>Tablas</h2>
+    <table border="1px">
+        <tr>
+            <td>Hola</td>
+            <td>Adios</td>
+        </tr>
+        <tr>
+            <th>Adios</th>
+            <th>Hola</th>
+        </tr>
+            <tr>
+                <td colspan="2">Hola</td>
+                
+            </tr>
+            <tr>
+                <th rowspan="2">Adios</th>
+                <th>Hola</th>
+            </tr>
+            <tr>
+                <th>Hola</th>
+            </tr>
+    </table>
+        <h2>Formularios</h2>
+        <form name="formulario1" method="" action="">
+        <p>Nombre: <input type="text" name="nombre" required></p>
+        <p>Telefono: <input type="tel" name="telefono"></p>
+        <p>Correo: <input type="email" name="correo"></p>
+        <p>Contraseña: <input type="password" name="contraseña"></p>
+        <p>Pagina web: <input type="url" name="pagina" placeholder="salesianosdomingosabio.es"></p>
+        <input type="hidden" name="oculto" value="12">
+        <p>Edad: <input type="number" name="edad" min="0" max="50"></p>
+        <p>Edad: <input type="range" name="edaqd1" ></p>
+        <p>Fecha: <input type="date" name="fecha" ></p>
+        <p>Mes: <input type="month" name="mes" ></p>
+        <p>Semana: <input type="week" name="semana" ></p>
+        <p>Hora: <input type="time" name="hora" ></p>
+        <p>Hora y fecha: <input type="datetime-local" name="hora_fecha" ></p>
+        <input type="submit" value="Aceptar">
+        <input type="reset" value="Borrar">
+        <button>Boton</button> 
+        <p>Opciones: ¿Que te gusta mas?</p>
+        <p><input type="radio" name="opcion" value="piscina" >Piscina</p>
+        <p><input type="radio" name="opcion" value="playa" checked>Playa</p>    
+        <p><input type="radio" name="opcion" value="campo" >Campo</p>    
+        
+        <p>Desplegable</p>
+        <select>
+        <optgroup label="categoria1">
+        <option value="piscina" selected>Piscina</option>        
+        <option value="campo">Campo</option>          
+        </optgroup>       
+        <option value="playa">Playa</option>   
+        </select>                       
+        <input type="color" value="#FFFFFF">
+        <textarea name="texto" cols="10" rows="10">Valor por defecto</textarea>
+        <meter min="0" max="45" value="25" low="10" high="35"></meter>
+        </form>
+
+</body>
+</html>
+

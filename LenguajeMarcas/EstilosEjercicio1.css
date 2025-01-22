@@ -1,0 +1,18 @@
+body{
+    background-color: #CFC;
+}
+h1{
+    color: red;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+h2{
+    color: #A00;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+p{
+    color: blue;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+ul{
+    color: #060;
+}

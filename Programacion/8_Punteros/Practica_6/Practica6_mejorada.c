@@ -57,7 +57,7 @@ const Categorias  stringToEnum(char categoria[30]) {
 
 void imprimirLibro(const Biblioteca * const catalogo);   
 /*IMPRIME TODA LA BIBLIOTECA*/
-void mostrarLibros( Biblioteca *  catalogo, int * total_libros); 
+void mostrarLibros(const Biblioteca * const  catalogo, int * total_libros);
 /*IMPRIME EL LIBRO CORRESPONDIENTE AL ID QUE INTRODUCE EL USUARIO*/
 void buscarId(const Biblioteca * const catalogo, int id, int * total_libros);
 /*AUMENTA LA DISPONIBILIDAD DEL LIBRO QUE ELIJA EL USUARIO*/
@@ -165,6 +165,9 @@ int main(int argc, char ** argv){
             aumentarstock(libros,id_aumentar-1,aumento,&total_libros);
             buscarId(libros,id_aumentar,&total_libros);//Llamar a la funcion de añadir
         }
+
+          return 0;
+}
 /////////////
 //FUNCIONES//
 /////////////
@@ -230,17 +233,18 @@ void mostrarLibrosAutor(const Biblioteca * const catalogo, char * autor, int * t
         encontrado=0;//Reinicio la variable
         for (int j = 0; j < (MAX_AUTORES - (strlen(autor)-1)); ++j){//Recorre el bucle los caracteres que tenga el nombre del autor caracter a caracter  y se resta uno para ignorar los saltos de linea 
 
-         if (strncmp(catalogo[i].autor_libro+j, autor,strlen(autor)-1) == 0){//va a ir comparando caracter a caracter y cuando encuentre uno igual lo guarda
-            encontrado=1;
-        };
+            if (strncmp(catalogo[i].autor_libro+j, autor,strlen(autor)-1) == 0){//va a ir comparando caracter a caracter y cuando encuentre uno igual lo guarda
+                encontrado=1;
+            }
 
-        if (encontrado==1){//aqui imprime todas las coincidencias
-            imprimirLibro(&catalogo[i]);
-            break;//Se sale y vuelve a recorrer el el bucle caracter a caracter
-        };
-    };
-};
-};
+            if (encontrado==1){//aqui imprime todas las coincidencias
+                imprimirLibro(&catalogo[i]);
+                break;//Se sale y vuelve a recorrer el el bucle caracter a caracter
+            }  
+        }
+    }
+}
+
 Biblioteca inicializarLibro(const int id, char * titulo_libro,const char * autor_libro,const float precio_libro,Categorias categoria,const int cantidadDispo, int * total_libros){//Le pasamos todos los parametros que maneja un libro
     Biblioteca libro;//Declaramos un libro de tipo libro para que a la hora de añadir un nuevo libro tenga la misma estructura que el resto 
 
@@ -256,6 +260,8 @@ Biblioteca inicializarLibro(const int id, char * titulo_libro,const char * autor
     return(libro);//La funcion devuelbe un libro
 
 }
+
+
 void añadirlibro(Biblioteca ** catalogo, int * total_libros){
 
     int id=*total_libros+1;//Declaracion de las viriables del libro nuevo
@@ -288,7 +294,7 @@ void añadirlibro(Biblioteca ** catalogo, int * total_libros){
 
     
 }//Liberamos la memoria dinamica al final del programa para que no ocupe tiempo de mas
-        return 0;
+      
 //MENU
 /*
        int eleccion;
@@ -358,7 +364,7 @@ void añadirlibro(Biblioteca ** catalogo, int * total_libros){
 
      return 0;
 */
-    }
+    
 
 
 

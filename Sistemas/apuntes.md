@@ -365,4 +365,7 @@ Ejercicio 19
 find | wc -l > output20.txt
 ```
 
+
+![Imagen_Ejercicio_20](image.png)
+
 ![Imagen_Ejercicio_20](image.png)

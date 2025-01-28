@@ -50,7 +50,9 @@ grep "^Nombre" archivo # Busca la las lineas del archivo que empiezan por esa pa
 grep "Nombre$" archivo # Busca la las lineas del archivo que terminan por esa palabra.
 grep "^$" archivo # Busca las lineas vacias.
 ```
-
+Comandos **find** (funciona con cualquier archivo de texto).
+```bash
+find . -type d #Busca recursivamente en el directorio en el que estes los subdirectorios
 
 Añadido **—help**
 
@@ -148,7 +150,7 @@ archivo3 >> archivo2 # Añade la informacion del archivo3 al archivo2 (a continu
 ```
 
 
-- Ejercicios
+# Ejercicios
 
 Ejercicio 1
 
@@ -157,9 +159,7 @@ Ejercicio 1
 ```bash
 grep "error" file1.txt > output1.txt
 ```
-
-    ![Imagen_Ejercicio_1](image.png) 
-
+![alt text](img/image.png)
 
 Ejercicio 2
 
@@ -170,7 +170,7 @@ sed 's/DEBUG/INFO/g' file1.txt > output2.txt
 ```
 
 
-![Imagen_Ejercicio_2](image.png) 
+![alt text](img/image-1.png)
 
 Ejercicio 3
 
@@ -180,8 +180,7 @@ Ejercicio 3
 head -n 5 file.txt | grep "error" > output3.txt
 ```
 
-![Imagen_Ejercicio_3](image.png) 
-
+![alt text](img/image-2.png)
 
 Ejercicio 4
 
@@ -191,7 +190,7 @@ Ejercicio 4
 ls *.txt | wc -l > output4.txt
 ```
 
-![Imagen_Ejercicio_4](image.png) 
+![alt text](img/image-3.png)
 
 
 Ejercicio 5
@@ -199,10 +198,10 @@ Ejercicio 5
 5. Ordena las líneas del archivo `file1.txt` alfabéticamente, elimina duplicados, y guarda el resultado en `output5.txt`.
 
 ```bash
-ls *.txt | wc -l > output4.txt
+sort file1.txt | uniq > output5.txt
 ```
 
-![Imagen_Ejercicio_5](image.png) 
+![Imagen_Ejercicio_5](img/image-20.png) 
 
 
 Ejercicio 6
@@ -213,7 +212,8 @@ Ejercicio 6
 head -n 100 file6_large.txt > out6.1.txt | sed '1,100d' file6_large.txt > out.6.txt
 ```
 
-![Imagen_Ejercicio_6](image.png) 
+![alt text](img/image-4.png)
+![alt text](img/image-5.png)
 
 
 Ejercicio 7
@@ -224,17 +224,17 @@ Ejercicio 7
 sed '/^$/d' file4.txt | uniq > output7.txt
 ```
 
-![Imagen_Ejercicio_7](image.png) 
+![alt text](img/image-6.png)
 
 Ejercicio 8
 
 8. Reemplaza todas las comas por tabulaciones en el archivo `file2.csv` y guarda el resultado en `output8.csv`.
 
 ```bash
-sed '/^$/d' file4.txt | uniq > output7.txt
+ sed 's/','/\t/g' file2.csv > output8.csv 
 ```
 
-![Imagen_Ejercicio_8](image.png) 
+![alt text](img/image-7.png) 
 
 
 Ejercicio 9
@@ -245,8 +245,7 @@ Ejercicio 9
 sed '/^[aeiouAEIOU]/s/^/INICIO:/' file5.txt > output9.txt
 ```
 
-![Imagen_Ejercicio_9](image.png)
-
+![alt text](img/image-8.png)
 
 Ejercicio 10
 
@@ -256,17 +255,17 @@ Ejercicio 10
  grep "error" file1.txt | wc -l > output10.txt
 ```
 
-![Imagen_Ejercicio_10](image.png)
+![alt text](img/image-9.png)
 
 Ejercicio 11
 
-11. Crea un script que muestre el número total de archivos en el directorio actual y escribe el resultado en `output11.txt`. <!-- A revisar se ha dicho -->
+11. Crea un script que muestre el número total de archivos en el directorio actual y escribe el resultado en `output11.txt`. 
 
 ```bash
  ls *.* -A | wc -l
 ```
 
-![Imagen_Ejercicio_11](image.png)
+![alt text](img/image-10.png)
 
 
 Ejercicio 12
@@ -277,7 +276,7 @@ Ejercicio 12
 uniq -D file7_duplicates.txt > output12.txt
 ```
 
-![Imagen_Ejercicio_12](image.png)
+![alt text](img/image-11.png)
 
 
 Ejercicio 13
@@ -288,7 +287,7 @@ Ejercicio 13
 head -n 100 file6_large.txt > output13.txt
 ```
 
-![Imagen_Ejercicio_13](image.png)
+![alt text](img/image-12.png)
 
 
 Ejercicio 14
@@ -296,21 +295,20 @@ Ejercicio 14
 14. Busca todas las líneas que contengan números en el archivo `file1.txt` y guarda el resultado en `output14.txt`.
 
 ```bash
-sed '' file5.txt > output9.txt
+grep '[0-9]' file1.txt > output14.txt
 ```
 
-![Imagen_Ejercicio_14](image.png)
-
+![alt text](img/image-13.png)
 
 Ejericicio 15
 
 15. Convierte el archivo `file2.csv` en un archivo delimitado por punto y coma y guarda el resultado en `output15.csv`.
 
 ```bash
-
+ sed 's/$/;/g' file2.csv > output15.csv
 ```
 
-![Imagen_Ejercicio_15](image.png)
+![alt text](img/image-14.png)
 
 
 Ejercicio 16
@@ -318,10 +316,10 @@ Ejercicio 16
 16. Inserta un prefijo "MODIFICADO:" antes de las líneas que contengan la palabra "ERROR" en el archivo `file1.txt` y guarda el resultado en `output16.txt`.
 
 ```bash
-sed '/ERROR/s/^/MODIFICADO: /' file5.txt > output16.txt
+sed '/error/s/^/MODIFICADO: /' file1.txt > output16.txt
 ```
 
-![Imagen_Ejercicio_16](image.png)
+![alt text](img/image-15.png)
 
 
 Ejercicio 17
@@ -329,10 +327,10 @@ Ejercicio 17
 17. Extrae las líneas del archivo `file3.txt` que contengan números pares y guarda el resultado en `output17.txt`.
 
 ```bash
-grep `02468` file3.txt > output17.txt
-```
+ grep [02468] file3.txt > output17.txt
+ ```
 
-![Imagen_Ejercicio_17](image.png)
+![alt text](img/image-16.png)
 
 
 Ejercicio 18
@@ -340,10 +338,10 @@ Ejercicio 18
 18. Busca recursivamente en todos los subdirectorios del directorio actual archivos que contengan la palabra "ERROR" y guarda las coincidencias en `output18.txt`.
 
 ```bash
-
+grep -r "error" ./sub* > output18.txt
 ```
 
-![Imagen_Ejercicio_18](image.png)
+![alt text](img/image-17.png)
 
 
 Ejercicio 19
@@ -354,18 +352,16 @@ Ejercicio 19
 tail -n 50 file6_large.txt > output19.txt
 ```
 
-![Imagen_Ejercicio_19](image.png)
+![alt text](img/image-18.png)
 
 
-Ejercicio 19
+Ejercicio 20
 
 20. Lista todos los archivos, incluidos los ocultos, de forma recursiva desde el directorio actual y guarda el resultado en `output20.txt`.
 
 ```bash
 find | wc -l > output20.txt
 ```
+![alt text](img/image-19.png)
 
 
-![Imagen_Ejercicio_20](image.png)
-
-![Imagen_Ejercicio_20](image.png)

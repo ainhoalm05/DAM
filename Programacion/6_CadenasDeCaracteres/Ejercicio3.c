@@ -24,10 +24,10 @@ int main(){
 	//Compara caracter
 	
 	for(int i=0; i<8; i++){
-		if(str1[i] == str2[i]){}
+		if(str1[i] == str2[i]){
 			printf("%c", str[i]);
 	}
-
+	printf("\n");
 	
 		return 0;	
 }

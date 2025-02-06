@@ -36,7 +36,7 @@ int main (){
 			printf("%d ",suma);
 		}
 	}else if(operacion==2){
-		int * arr_concatenado=(int *)malloc(sizeof(int)*(tamaño*2));
+		double * arr_concatenado=(double *)malloc(sizeof(double)*(tamaño*2));
 		for (int i = 1; i <= tamaño; i++){
 			arr_concatenado[i]=arr1[i];
 		}
@@ -44,7 +44,7 @@ int main (){
 			arr_concatenado[tamaño + i]=arr2[i];
 		}
 		for (int i = 1; i <= tamaño *2 ; i++){
-			printf("%d ", arr_concatenado[i]);
+			printf("%lf ", arr_concatenado[i]);
 		}
 	}
 

@@ -1,0 +1,53 @@
+h1{
+    color: blue;
+    font-family: Arial;
+    font-size: 28pt;
+}
+h2{
+    color: white;
+}
+
+#caja1{
+    background-color: yellow;
+    font-family: Arial;
+    font-size: 12;
+    padding: 2%;
+}
+#caja2{
+    background-color: pink;
+    display: flex;
+    gap: 10pt;
+}
+#caja3{
+    background-color: green;  
+    display: grid;
+    grid-gap: 10pt;
+    grid-template-columns: repeat(2, 1fr);
+    /* Hace dos columnas, la de abajo grande, y se repite */
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5pt;
+    
+}
+.cajamorada{
+    padding: 2%;
+    background-color: purple;
+}
+.cajamorada2{
+    background-color: purple;
+    grid-column: span 2;
+    padding: 2%;
+}
+table, tr, td, th{
+    border:1px solid green;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    border-collapse: collapse;
+    /* Para que el borde se una linea fina */
+}    
+.cajanaranja{
+    font-family: Arial;
+    font-size:12pt;
+    background-color: orange;
+    padding: 2%;
+}

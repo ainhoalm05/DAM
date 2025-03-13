@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap 4 Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <style>
+    .cajaRosa{
+      background-color: hotpink;
+    }
+    .cajaA{
+      background-color: greenyellow;
+    }
+    .cajaB{
+      background-color: red;
+    }
+    .cajaPie{
+      background-color: yellow;
+    }
+    @media(min-width: 769px) and (max-width: 992px){
+       .cajaPie{
+        background-color: hotpink;
+       }
+       .cajaRosa{
+        background-color: blueviolet;
+       }
+       .cajaB{
+        background-color: lightsalmon;
+       }
+       .caja{
+        background-color: aqua;
+       }
+    }
+    @media (min-width: 993px){
+      .cajaPie{
+        background-color: orange;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+  <div class="row">
+    
+      <div class="col-12">
+        <div class="border d-none d-sm-block d-md-none text-center cajaRosa p-2">Mobile</div>
+      </div>
+    
+      <div class="col-12 d-none d-md-block d-lg-none order-md-3" >
+        <div class="border text-center cajaRosa p-2">Tablet</div>
+      </div>
+    
+      <div class="col-12 d-none d-md-none d-lg-block order-lg-3">
+        <div class="border text-center cajaRosa p-2">PC</div>
+      </div>
+    
+  
+      <div class="col-md-12 col-sm-8 order-2 order-md-1"">
+        <div class="border bg-warning p-2">CABECERA</div>
+      </div>
+    
+    <div class="row ">
+      <div class="col-8 col-md-4 col-lg-8 order-sm-3 order-md-2 order-lg-1">
+        <div class="border text-center cajaA p-2">A</div>
+      </div>
+      <div class="col-4 col-md-8 col-lg-4 order-sm-4 order-md-1 order-lg-2">
+        <div class="border text-center cajaB p-2">B</div>
+      </div>
+    </div>
+  </div>
+    <div class="row text-center">
+      <div class="col-12 order-md-2 ">
+        <div class="border bg-primary p-2">1</div>
+      </div>
+      <div class="col-6 d-lg-none order-md-3">
+        <div class="border bg-primary p-2">2</div>
+      </div>
+      <div class="col-6 order-md-1 order-lg-2 offset-md-6">
+        <div class="border bg-primary p-2">3</div>
+      </div>
+      <div class="col-12 col-lg-6 d-md-none d-lg-block order-md-2">
+        <div class="border bg-primary p-2">4</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6 col-md-12 col-lg-12 ">
+        <div class="border text-lg-center text-md-end text-sm-start cajaPie  p-2">Pie</div>
+      </div>
+    </div>
+    </div>
+  </div>
+  
+</body>
+</html>

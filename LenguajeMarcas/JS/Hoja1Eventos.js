@@ -22,6 +22,24 @@ function cuentaAtras2(){
         }
     }, 1000);
 }
+
+function rellenarTablaFunction(){
+    let numero=9;
+    for (let i=1;i<=numero;i++){
+        document.getElementById(`${i}`).textContent=i;
+    }
+    //document.getElementById("").textContent=;
+
+}
+function rellenarTablaFunction2(){
+    let celdas = document.querySelectorAll("#tablaSegunda td");
+    celdas.forEach((td,i)=>td.textContent=i+1);
+}
+
+function cambiarColorFondo(){
+    cambiarFondo.style.background=`rgb(${random(255)},${random(255)},${random(255)})`;
+
+}
 // // function cambiarTexto(){
 //     document.body.innerHTML="<h1>HOLA</h1>";
 // }
@@ -32,6 +50,15 @@ function load (){
 
     let cuentaAtras = document.getElementById("cuentaAtras");
     cuentaAtras.addEventListener("click",cuentaAtras2);
+
+    let rellenarTabla = document.getElementById("tabla");
+    rellenarTabla.addEventListener("click", rellenarTablaFunction);
+
+    let rellenarTabla2 = document.getElementById("tabla2");
+    rellenarTabla2.addEventListener("click",rellenarTablaFunction2);
+
+    let cambiarFondo = document.getElementById("cambiarFondo");
+    cambiarFondo.addEventListener("mousemove", cambiarColorFondo);
     /*
 
     let boton2 = document.getElementById("boton2");  
@@ -45,3 +72,4 @@ function load (){
 */
     }
 window.addEventListener("DOMContentLoaded", load, false);
+

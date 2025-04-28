@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejemplo 1 Javascript</title>
+        <script>
+            let a=prompt("Introduce un numero:");
+            let b= 2;
+
+            let resultado = parseInt(a)+b;
+
+            document.write(resultado);
+            if(a==b){
+                document.writeln("Son iguales");
+            }else if(a>b){
+                document.write("<br/>El numero que has introducido es mayor que el otro")
+            }
+
+            while(a>0){
+                console.log(a);    
+                a--;            
+            }
+
+            for(let i=0;i<3;i++){
+                console.log("hola");
+            }
+            
+            let mensaje=prompt("¿Que edad tienes?",10);
+            alert(mensaje);
+
+            let pregunta= confirm("¿Eres mayor de edad?");
+            alert(pregunta);
+            console.log("la edad de la pregunta es: "+mensaje);
+            document.write("<h2></h2>");
+            
+        </script>
+    </head>
+    <body>
+        <h1>Javascript</h1>
+    </body>
+</html>

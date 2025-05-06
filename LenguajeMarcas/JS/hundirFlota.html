@@ -1,0 +1,59 @@
+
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="hundirFlota.js"></script>
+
+        <title>Hundir la Flota</title>
+        <style>
+            table {
+                border-collapse: collapse;
+                margin: 10px;
+            }
+            td, th {
+                border: 1px solid black;
+                width: 30px;
+                height: 30px;
+                text-align: center;
+            }
+            .barco {
+                background-color: #bbb;
+            }
+            .agua {
+                background-color: lightblue;
+            }
+            .tocado {
+                background-color: red;
+            }
+            .boton-maquina {
+                width: 30px;
+                height: 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Hundir la Flota</h1>
+    
+        <div>
+            <h2>Tu Flota</h2>
+            <div id="input-flota">
+                <label for="flota-jugador">Introduce tu flota (ej: A1x, B3xxx, ...):</label>
+                <input type="text" id="flota-jugador" name="flota-jugador">
+                <button onclick="procesarFlotaJugador()">Colocar Flota</button>
+                <p id="error-flota" style="color: red;"></p>
+            </div>
+            <table id="tableroJugador"></table>
+        </div>
+    
+        <div>
+            <h2>Flota Enemiga</h2>
+            <table id="tableroMaquina"></table>
+        </div>
+    
+        <div id="mensajes"></div>
+    
+        <script src="script.js"></script>
+    </body>
+    </html>

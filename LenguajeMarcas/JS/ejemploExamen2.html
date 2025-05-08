@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ejercicio 1</title>
+	<script src="ejemploExamen2.js"></script>
+</head>
+<body>
+	<h1>Ejercicio 1: Validar un formulario con expresiones regulares</h1>
+    <h3>Crea una página con un formulario que tenga los siguientes campos:
+        Nombre (solo letras, mínimo 3 caracteres)
+        Email (formato válido)
+        DNI español (8 números seguidos de una letra)
+        
+        Cuando el usuario haga clic en el botón "Validar", debes usar expresiones regulares 
+        para comprobar cada campo y mostrar mensajes de error si hay fallos.
+        </h3>
+	<label >Nombre: <input type="text" id="nombre"></label>
+    <label>Email: <input type="text" id="email"></label> 
+    <label>DNI: <input type="text" id="dni"></label>
+	<button type="button" id="validar">Validar</button>
+    <h1>Ejercicio 2: Contador de clics usando eventos</h1>
+    <h3>Crea una página que tenga un botón con el texto "Haz clic". Cada vez que el usuario haga clic, se debe:
+        Incrementar un contador (visible en pantalla)
+        Mostrar un mensaje cuando se llegue a 10 clics: "¡Has llegado a 10 clics!"
+        Utiliza event listeners correctamente y evita usar atributos onclick en HTML.</h3>
+
+    <button id="clicker">Click</button><span id="contador"></span>
+
+    <h1>Ejercicio 3: Juego de tablero sencillo con DOM</h1>
+    <h3>Crea un "tablero" de 3x3 (tipo Tic-Tac-Toe) con divs o botones. Al hacer clic en una celda, debe aparecer una "X" o una "O" alternando cada turno.
+        Usa JavaScript puro para crear el tablero en el DOM.
+        Desactiva las celdas ya marcadas.
+        Muestra un mensaje de quién ha ganado 
+        (puedes simplificar la lógica o no implementarla completa si no da tiempo).</h3>
+    
+        <table>
+            <tr>
+                <td><button id="00"></button></td>
+                <td><button id="01"></button></td>
+                <td><button id="02"></button></td>
+            </tr>
+            <tr>
+                <td><button id="10"></button></td>
+                <td><button id="11"></button></td>
+                <td><button id="12"></button></td>
+            </tr>
+            <tr>
+                <td><button id="20"></button></td>
+                <td><button id="21"></button></td>
+                <td><button id="22"></button></td>
+            </tr>
+        </table>
+    
+        <div id="mensaje"></div>
+
+        <h1>Ejercicio 4: Búsqueda dinámica con expresiones regulares</h1>
+        <h3>Crea una lista de palabras (por ejemplo: JavaScript, Java, Python, C++, Kotlin). Añade un input de texto arriba.
+            Cada vez que el usuario escriba en el input, muestra solo las palabras que coincidan con lo que escribe usando una expresión regular
+            (por ejemplo, si escribe "ja", que se muestren Java y JavaScript).
+            </h3>
+        
+    <input type="text" id="buscar" placeholder="Escribe una palabra...">
+
+    <ul id="resultados"></ul>
+</body>
+</html>

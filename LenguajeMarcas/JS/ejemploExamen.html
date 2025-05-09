@@ -12,8 +12,25 @@
 		letras se codifican con el número de la posición que ocupan en el abecedario
 		español, por ejemplo si el usuario escribe ABC o abc (no diferencia entre mayúsculas
 		y minúsculas) debe aparecer debajo resultado:123</h3>
-	<input id="descodificado" type="text">
-	<p><span id="codificado"></span></p>
+	Escribe el texto: <input id="descodificado" type="text">
+	Texto codificado: <span id="codificado"></span>
 	
+	<h1>2. Matriz 2x2</h1>
+	<h3>Dado una matriz 2x2, se genera una posición aleatoria y una letra aleatoria. Y el usuario debe escribir en la casilla indicada, la letra indicada.
+		Si no, dará un mensaje de error que se ha equivocado.
+		 Las letras y el número se van generando aleatoriamente cada 2 segundos.</h3>
+	El numero de la casilla: <span id="i"></span>
+	La letra: <span id="letra"></span>
+	<br>
+		 <table>
+			<tr>
+				<td id="00"><input type="text" class="letra" name="00"></td>
+				<td id="01"><input type="text" class="letra" name="01"></td>
+			</tr>
+			<tr>
+				<td id="10"><input type="text" class="letra" name="10"></td>
+				<td id="11"><input type="text" class="letra" name="11"></td>
+			</tr>
+		 </table>
 </body>
 </html>

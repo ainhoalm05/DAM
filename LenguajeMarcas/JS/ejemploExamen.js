@@ -8,8 +8,15 @@ function codificacion(event){
         salida.textContent += (posicion + 1);//le suma 1 para que empiece en 1 y no en 0
     }    
 }
+function random(numero){
+    return Math.floor(Math.random() * numero);//Genera un numero aleatorio entre 0 y el numero que le pases
+}
+
 function load(){
-    let letra = document.getElementById("descodificado");
-    letra.addEventListener("keydown",codificacion);
+    let texto = document.getElementById("descodificado");
+    texto.addEventListener("keydown",codificacion);
+
+    let letra = document.querySelectorAll(".letra");
+    letra.forEach(i=>i.addEventListener("click",))
 }
 window.addEventListener("DOMContentLoaded", load, false);

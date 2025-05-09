@@ -134,7 +134,27 @@ function filtrarPalabras(event) {
 
     document.getElementById("resultados").innerHTML = html;
 }
+function cuentaAtras() {
+    let tiempo = 10;
+    let p = document.getElementById("cuenta");
+    p.textContent = tiempo;
 
+    let intervalo = setInterval(function () {
+        tiempo--;
+        if (tiempo > 0) {
+            p.textContent = tiempo;
+        } else {
+            clearInterval(intervalo);
+            p.textContent = "¡Tiempo terminado!";
+        }
+    }, 1000);
+}
+function random(number){
+    return Math.floor(Math.random()*(number+1));
+}
+function cambiarFondo(){
+    document.body.style.background=`rgb(${random(255)},${random(255)},${random(255)})`;
+}
 function load(){
     let boton1=document.getElementById("validar");
     boton1.addEventListener("click",comprobarFormulario);
@@ -154,5 +174,13 @@ function load(){
 
     let inputBuscar = document.getElementById("buscar");
     inputBuscar.addEventListener("input", filtrarPalabras);
+
+    let boton = document.getElementById("iniciar");
+    boton.addEventListener("click", cuentaAtras);
+
+    let boton3 = document.getElementById("boton3");
+    boton3.addEventListener("click", cambiarFondo);
+
+    
 }
 window.addEventListener("DOMContentLoaded",load,false);

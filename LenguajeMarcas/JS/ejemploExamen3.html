@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo Examen 3</title>
+    <script src="ejemploExamen3.js"></script>
+</head>
+<body>
+    <!-- Ejercicio 1: Validar correo y mostrar longitud del nombre -->
+    <h1>Ejercicio 1</h1>
+    <h3>Introduce tu nombre y correo. El correo debe tener formato correcto (nombre@dominio.com). Se mostrará la longitud de tu nombre si el correo es válido.</h3>
+    <label>Nombre: <input id="nombre" type="text"></label><br>
+    <label>Correo: <input id="correo" type="text"></label><br>
+    <button type="button" id="botonNombreCorreo">Validar</button>
+
+    <br><br>
+
+    <!-- Ejercicio 2: Matriz 3x3 con números pares -->
+    <h1>Ejercicio 2</h1>
+    <h3>Haz clic solo en los números pares de la matriz.</h3>
+    <table id="tabla">
+        <tr>
+            <td><button class="boton" id="00">?</button></td>
+            <td><button class="boton" id="01">?</button></td>
+            <td><button class="boton" id="02">?</button></td>
+        </tr>
+        <tr>
+            <td><button class="boton" id="10">?</button></td>
+            <td><button class="boton" id="11">?</button></td>
+            <td><button class="boton" id="12">?</button></td>
+        </tr>
+        <tr>
+            <td><button class="boton" id="20">?</button></td>
+            <td><button class="boton" id="21">?</button></td>
+            <td><button class="boton" id="22">?</button></td>
+        </tr>        
+    </table>
+
+    <br><br>
+
+    <!-- Ejercicio 3: Adivinar un color secreto -->
+    <h1>Ejercicio 3</h1>
+    <h3>Haz clic en el color que crees que es el secreto.</h3>
+    <button id="c0">Rojo</button>
+    <button id="c1">Verde</button>
+    <button id="c2">Azul</button>
+
+    <br><br>
+
+    <!-- Ejercicio 4: Contador de vocales en tiempo real -->
+    <h1>Ejercicio 4</h1>
+    <h3>Letra aleatoria cada segundo. Si es vocal, el fondo cambia de color.</h3>
+    <span id="contadorLetra">-</span>
+    <br>
+    <button id="startVocal">Start</button>
+    <button id="stopVocal">Stop</button>
+
+    <h1>Codificador de Números a Letras</h1>
+    <h3>Introduce un número entre 1 y 26 y verás la letra corresondiente:</h3>
+    
+    <label for="numero">Número: </label>
+    <input type="text" id="numero"><span id="letra"></span></input>
+    
+</body>
+</html>

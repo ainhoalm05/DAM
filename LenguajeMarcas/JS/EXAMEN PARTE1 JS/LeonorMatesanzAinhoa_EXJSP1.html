@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen JS Parte1</title>
+    <script src="LeonorMatesanzAinhoa_EXJSP1.js"></script>
+</head>
+<body>
+    <h1>Ejercicio 1</h1>
+    <h3>Se pide que dado un formulario se introduzca la matrícula de un coche y los litros y
+        salga el precio del repostaje sabiendo que cada litro es 1,26 euros. Comprueba que
+        la matrícula cumple tres letras y 4 números, sino muestra un mensaje de error.
+        </h3>
+    <label>Matricula: <input id="matricula" type="text"></label>
+    <label>Litros: <input id="litros" type="text"></label>
+    <button type="button" id="boton1">Validar</button>
+
+    <h1>Ejercicio 2</h1>
+    <h3>2. Crea una tabla 3x3 dónde se rellene de letras aleatorias del abecedario, se generará
+        un número y una letra y hay que darle a las letras que son tantas veces como
+        indique el número. Hay que asegurarse que el número de letra está en la matriz.</h3>
+    <table id="tabla">
+        <tr>
+            <td><button class="boton" id="00">?</button></td>
+            <td><button class="boton" id="01">?</button></td>
+            <td><button class="boton" id="02">?</button></td>
+        </tr>
+        <tr>
+            <td><button class="boton" id="10">?</button></td>
+            <td><button class="boton" id="11">?</button></td>
+            <td><button class="boton" id="12">?</button></td>
+        </tr>
+        <tr>
+            <td><button class="boton" id="20">?</button></td>
+            <td><button class="boton" id="21">?</button></td>
+            <td><button class="boton" id="22">?</button></td>
+        </tr>        
+    </table>
+
+    <h1>Ejercicio 3</h1>
+    <h3>El juego de los trileros. Dados tres botones ubicados en una tabla con una sola fila
+        que se vinculan con un array, genera aleatoriamente una posición donde está la
+        bola y el usuario la tiene que adivinar dándole al botón cree que está. Si no está se
+        bloquea el botón, y si está nuestra la bola representada por una o.
+        </h3>
+    <td><button class="boton" id="00">?</button></td>
+    <td><button class="boton" id="01">?</button></td>
+    <td><button class="boton" id="02">?</button></td>
+
+    <h1>Ejercicio 4</h1>
+
+    Contador: <span id="contadorColor"></span>
+    <button onclick="iniciarColores()">Start</button>
+    <button onclick="pararColores()">Stop</button>
+</body>
+</html>
